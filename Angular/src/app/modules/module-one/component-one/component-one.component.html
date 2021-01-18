@@ -1,0 +1,12 @@
+<p>component-one works!</p>
+<button type="button" class="btn btn-primary" (click)="testJavaApi()">
+    Test Java Api
+</button>
+<div>
+    <p>Java Api Response: {{message}}</p>
+    <p>User Name: {{user.displayName}}</p>
+    <p>User Group Ids from token:</p>
+    <li *ngFor="let group of user.groupIDs">
+        <span class = "badge">{{group}}</span>
+    </li>
+</div>

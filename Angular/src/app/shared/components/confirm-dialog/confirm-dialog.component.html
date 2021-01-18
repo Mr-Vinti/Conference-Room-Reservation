@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{data?.title}}</h1>
+
+<div mat-dialog-content>
+    <p>{{data?.message}}</p>
+</div>
+
+<div mat-dialog-actions>
+    <div *ngIf="data?.confirmationRequired" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between center" class="w-100">
+        <button fxFlex="40%" fxFlex.lt-md="100%" mat-raised-button color="warn" (click)="onDismiss()">No</button>
+        <button fxFlex="40%" fxFlex.lt-md="100%" mat-raised-button color="primary" (click)="onConfirm()">Yes</button>
+    </div>
+    <div *ngIf="!data?.confirmationRequired" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center stretch" class="w-100">
+        <button fxFlex="50%" fxFlex.lt-md="100%" mat-raised-button color="primary" (click)="onConfirm()">Ok</button>
+    </div>   
+</div>

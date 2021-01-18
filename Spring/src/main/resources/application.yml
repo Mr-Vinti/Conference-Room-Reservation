@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /reservation
+    
+
+spring:
+  security: 
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://login.microsoftonline.com/6b29189e-3d5d-4d76-970c-abe758468ae4/v2.0
+          jwk-set-uri: https://login.microsoftonline.com/6b29189e-3d5d-4d76-970c-abe758468ae4/discovery/v2.0/keys
+
+
+# Actuator Properties
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - loggers
+        - health
+        - info
+        - metrics
+        - env
+  endpoint:
+    env:
+      enabled: true
+    loggers:
+      enabled: true
+    health:
+      enabled: true
+    info:
+      enabled: true
+    metrics:
+      enabled: true

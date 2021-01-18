@@ -1,0 +1,26 @@
+{
+    "auth": {
+      "clientId": "1a67e338-2b82-4a85-89e1-61b7e735308e",
+      "authority": "https://login.microsoftonline.com/679145ad-f827-42d8-b45e-720324e5d2a2",
+      "validateAuthority": true,
+      "navigateToLoginRequestUrl": true
+    },
+    "cache": {
+      "cacheLocation": "localStorage"
+    },
+    "scopes": {
+      "loginRequest": [ "openid", "profile" ]
+    },
+    "resources": {
+      "backendApi": {
+        "resourceScope": "api://8eaed6b4-f44f-46bf-99e3-ab006336612f/access_as_user"
+      },
+      "graphApi": {
+        "resourceUri": "https://graph.microsoft.com/v1.0/me/memberOf",
+        "resourceScope": "GroupMember.Read.All"
+      }
+    },
+    "groups": {
+      "groupAllUsers": "a2f74736-10b6-433c-8b92-c904f8c1e964"
+    }
+  }
