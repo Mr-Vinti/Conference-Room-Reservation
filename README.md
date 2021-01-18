@@ -13,7 +13,7 @@ Roluri:
 
   	*Bianca -> Project Manager -> Techical Write
 	*Marius -> Devoltator
-  	*Mihaela -> Dezvoltator
+  	*Andreea -> Dezvoltator
   	*Vladimir -> Tester
 
 La ce lucram , cu cine lucram?
