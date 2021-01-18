@@ -9,8 +9,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://login.microsoftonline.com/6b29189e-3d5d-4d76-970c-abe758468ae4/v2.0
-          jwk-set-uri: https://login.microsoftonline.com/6b29189e-3d5d-4d76-970c-abe758468ae4/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/679145ad-f827-42d8-b45e-720324e5d2a2/v2.0
+          jwk-set-uri: https://login.microsoftonline.com/679145ad-f827-42d8-b45e-720324e5d2a2/discovery/v2.0/keys
 
 
 # Actuator Properties
