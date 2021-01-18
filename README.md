@@ -36,6 +36,6 @@ Functioalitati:
 
 De facut pana joi (21.01.2021) -> intalnire ora 20:00:
 
-  *Implementare baza de date + autentificare + autorizare
-  *Prototip pentru interfata(sa vedem daca merge si este ok)
-  *Sa incepem sa scriem README(documentatie)
+  	*Implementare baza de date + autentificare + autorizare
+  	*Prototip pentru interfata(sa vedem daca merge si este ok)
+  	*Sa incepem sa scriem README(documentatie)
