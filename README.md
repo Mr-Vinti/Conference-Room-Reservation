@@ -31,6 +31,7 @@ Functioalitati:
   	*Utilizatorul poate sa rezerve, follow, eliberare. Utilizator Admin, adauga sali, elimina sali etc.
   	*Exemplu:
 		*Actiuni: Rezervare, Follow, Eliberare
+		*Criteria: Numele Salii | Stare | Ocupata De| Interval de timp
 		*Numele Salii | Starea Curenta | Ocupata De | Ocupare/Eliberare | Rezervare | Urmarire| ext | Text | Text | Button | Button | Button
 
 De facut pana joi (21.01.2021) -> intalnire ora 20:00:
