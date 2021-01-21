@@ -1,41 +1,33 @@
-MPS - proiect pe web -> Rezervare Sala Companie
+# MPS - Rezervare Sală Companie
 
-Prima sedinta -> 18.01.2021
+Prezentare proiect (insert pp aici)
 
-Compozitie +Tehnologii:
+## Scopul proiectului
+Realizarea unei platforme web de rezervare a sălilor dintr-o companie.
 
-	*Baza de date - > Sql server
-                      -> Sistem de stari -> in baza de date
-	*Autentificare + Autorizare ->  Azure Active Directory ( AAD )
-	*Interfata -> adobe (Bianca)
+## Compoziție + Tehnologii:
+* *Angular + Adobe XD* - pentru crearea interfeței proiectului
+* *Sql server* - pentru baza de date: sistem de stări
+* *Azure Active Directory* (AAD) - Autentificare + Autorizare
 
-Roluri: 
+## Organizarea task-urilor:
+* [Diagrama Gantt] (https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
+* [Meeting Minutes] (https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
+* utilizare Microsoft Teams
 
-  	*Bianca -> Project Manager -> Techical Write
-	*Marius -> Devoltator
-  	*Andreea -> Dezvoltator
-  	*Vladimir -> Tester
+## Echipă:
+* Vladimir-Georgian Mocanu-Prejma - *341C5*
+* Marius-Mihai Vintilă - *341C5*
+* Mihaela-Andreea Stan - *343 C2*
+* Bianca-Alexandra Iosub - *342C5*
 
-La ce lucram , cu cine lucram?
+## Roluri în cadrul proiectului:
+* *Project manager + Technical Writer* - Bianca
+* *Dezvoltatori* - Andreea + Marius
+* *Tester* - Vladimir
 
-  	*Marius  + Vladimir-> Baza de Date + Autentificare + Autorizare -> a mai facut si este ok
-  	*Bianca + Andreea-> Interfata Web(adobe) -> facem o pagina de test si dupa  vedem
-
-Functioalitati:
-
-  	*2 Pagini web
-  	*sa apara salile sub forma de tabel unde ai mai multe actiuni
-  	*Login pe pagina 
-  	*Anumite restrictii pentru membrii organizatiei
-  	*Primire notificare cand se elibereaza o sala (sau se ocupa)
-  	*Utilizatorul poate sa rezerve, follow, eliberare. Utilizator Admin, adauga sali, elimina sali etc.
-  	*Exemplu:
-		*Actiuni: Rezervare, Follow, Eliberare
-		*Criteria: Numele Salii | Stare | Ocupata De| Interval de timp
-		*Numele Salii | Starea Curenta | Ocupata De | Ocupare/Eliberare | Rezervare | Urmarire| ext | Text | Text | Button | Button | Button
-
-De facut pana joi (21.01.2021) -> intalnire ora 20:00:
-
-  	*Implementare baza de date + autentificare + autorizare
-  	*Prototip pentru interfata(sa vedem daca merge si este ok)
-  	*Sa incepem sa scriem README(documentatie)
+## Referințe:
+* https://nodejs.org/en/
+* https://www.oracle.com/ro/java/technologies/javase-jdk11-downloads.html
+* https://spring.io/tools
+* https://projectlombok.org/download
