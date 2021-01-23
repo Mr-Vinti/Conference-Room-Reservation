@@ -7,10 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mps.rooms.dto.RoomDto;
+import com.mps.rooms.service.FollowService;
 import com.mps.rooms.service.RoomService;
 
 import io.swagger.annotations.Api;
@@ -27,6 +30,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class RoomController {
 	private RoomService roomService;
+	private FollowService followService;
 
 	@ApiOperation("Get All Rooms For User Method")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
@@ -38,5 +42,29 @@ public class RoomController {
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"));
 
 		return ResponseEntity.ok(roomService.getRooms());
+	}
+	
+	@ApiOperation("Register user to follow room Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@PostMapping("/{room-id}/follow")
+	public ResponseEntity<String> follow(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+		log.info("User {} followed room with id {}.",
+				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+
+		return ResponseEntity.ok(followService.follow(roomId));
+	}
+	
+	@ApiOperation("User unfollows room Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@PostMapping("/{room-id}/unfollow")
+	public ResponseEntity<String> unfollow(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+		log.info("User {} followed room with id {}.",
+				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+
+		return ResponseEntity.ok(followService.unfollow(roomId));
 	}
 }
