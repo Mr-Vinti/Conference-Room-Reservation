@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mps.rooms.dto.RoomDto;
-import com.mps.rooms.service.RoomService;
+import com.mps.rooms.dto.StatusDto;
+import com.mps.rooms.service.StatusService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,21 +22,21 @@ import lombok.extern.log4j.Log4j2;
 
 @RestController
 @Api(tags = "Rooms Controller")
-@RequestMapping("/api/rooms")
+@RequestMapping("/api/statuses")
 @AllArgsConstructor
 @Log4j2
-public class RoomsController {
-	private RoomService roomService;
-
-	@ApiOperation("Get All Rooms For User Method")
+public class StatusController {
+	private StatusService statusService;
+	
+	@ApiOperation("Get All Statuses Method")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
 			@ApiResponse(code = 400, message = "Malformed request"),
 			@ApiResponse(code = 500, message = "Internal error") })
 	@GetMapping
-	public ResponseEntity<List<RoomDto>> getAllRooms(Principal principal) {
-		log.info("User {} retrieved all rooms.",
+	public ResponseEntity<List<StatusDto>> getAllStatuses(Principal principal) {
+		log.info("User {} retrieved all statuses.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"));
 
-		return ResponseEntity.ok(roomService.getRooms());
+		return ResponseEntity.ok(statusService.getStatuses());
 	}
 }
