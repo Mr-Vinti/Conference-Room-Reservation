@@ -1,4 +1,4 @@
-package com.ag.test.security;
+package com.mps.rooms.security;
 
 import java.util.Arrays;
 import java.util.Collection;

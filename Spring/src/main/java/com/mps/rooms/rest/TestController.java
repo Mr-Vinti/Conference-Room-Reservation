@@ -1,4 +1,4 @@
-package com.ag.test.rest;
+package com.mps.rooms.rest;
 
 import java.security.Principal;
 
@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ag.test.beans.StringResponse;
+import com.mps.rooms.beans.StringResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

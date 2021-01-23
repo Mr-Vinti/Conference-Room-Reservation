@@ -1,4 +1,4 @@
-package com.ag.test.aspect;
+package com.mps.rooms.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

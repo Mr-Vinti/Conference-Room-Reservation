@@ -1,4 +1,4 @@
-package com.ag.test.beans;
+package com.mps.rooms.beans;
 
 public class StringResponse {
 

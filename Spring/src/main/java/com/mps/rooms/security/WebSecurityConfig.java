@@ -1,4 +1,4 @@
-package com.ag.test.security;
+package com.mps.rooms.security;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

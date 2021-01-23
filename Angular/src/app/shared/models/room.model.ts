@@ -7,4 +7,5 @@ export interface Room {
   description: string;
   currentReservation: Reservation;
   pastFiveReservations: Reservation[];
+  following: boolean;
 }
