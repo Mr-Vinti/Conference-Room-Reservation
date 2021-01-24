@@ -1,5 +1,7 @@
 package com.mps.rooms.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,4 +39,10 @@ public class Room {
 	
 	@Column(name = "[DESC]")
 	private String description;
+	
+	@Column(name = "PENDNG_DT")
+	private Date pendingDate;
+	
+	@Column(name = "PENDNG_BY")
+	private String pendingBy;
 }

@@ -67,4 +67,16 @@ public class RoomController {
 
 		return ResponseEntity.ok(followService.unfollow(roomId));
 	}
+	
+	@ApiOperation("Set room on pending when user starts reservation Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@PostMapping("/{room-id}/pending")
+	public ResponseEntity<String> pending(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+		log.info("User {} opened reservation dialog for room with id {}.",
+				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+
+		return ResponseEntity.ok(roomService.pending(roomId));
+	}
 }
