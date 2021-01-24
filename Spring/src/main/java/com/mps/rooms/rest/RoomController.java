@@ -9,9 +9,11 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mps.rooms.dto.ReservationDto;
 import com.mps.rooms.dto.RoomDto;
 import com.mps.rooms.service.FollowService;
 import com.mps.rooms.service.RoomService;
@@ -78,5 +80,29 @@ public class RoomController {
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
 		return ResponseEntity.ok(roomService.pending(roomId));
+	}
+	
+	@ApiOperation("Set room on occupied Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@PostMapping("/{room-id}/occupy")
+	public ResponseEntity<String> occupy(@PathVariable(name = "room-id") Integer roomId, @RequestBody ReservationDto reservation, Principal principal) {
+		log.info("User {} sent call to occupy room with id {}.",
+				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+
+		return ResponseEntity.ok(roomService.occupy(roomId, reservation));
+	}
+	
+	@ApiOperation("Set room on free Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@PostMapping("/{room-id}/free")
+	public ResponseEntity<String> free(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+		log.info("User {} sent call to free room with id {}.",
+				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+
+		return ResponseEntity.ok(roomService.free(roomId, true));
 	}
 }

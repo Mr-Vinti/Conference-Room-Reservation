@@ -1,6 +1,8 @@
 package com.mps.rooms.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class FollowService {
 	private FollowRepository followRepository;
+
+	public List<String> getFollows(Integer roomId) {
+		List<Follow> follows = followRepository.findByIdRoomId(roomId);
+
+		return follows.stream().map((follow) -> {
+			return follow.getId().getEmail();
+		}).collect(Collectors.toList());
+	}
 
 	public boolean getFollow(Integer roomId, String email) {
 		FollowPK id = new FollowPK(roomId, email);
@@ -38,7 +48,7 @@ public class FollowService {
 
 		return "Success";
 	}
-	
+
 	public String unfollow(Integer roomId) {
 		String userEmail = Utils.getUserEmail();
 		FollowPK id = new FollowPK(roomId, userEmail);

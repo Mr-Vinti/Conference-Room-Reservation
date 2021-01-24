@@ -17,16 +17,25 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ReservationService {
 	private ReservationRepository reservationRepository;
+	
+	public Reservation getCurrentReservationEntity(Integer roomId) {
+		Optional<Reservation> currentReservation = reservationRepository.findCurrentReservation(roomId, new Date());
+		return currentReservation.isPresent() ? currentReservation.get() : null;
+	}
 
-	public ReservationDto getCurrentReservation(Integer id) {
-		Optional<Reservation> currentReservation = reservationRepository.findCurrentReservation(id, new Date());
+	public ReservationDto getCurrentReservation(Integer roomId) {
+		Optional<Reservation> currentReservation = reservationRepository.findCurrentReservation(roomId, new Date());
 		return currentReservation.isPresent() ? Reservation.toDto(currentReservation.get()) : null;
 	}
 
-	public List<ReservationDto> getLastFive(Integer id) {
-		List<ReservationDto> lastFive = reservationRepository.findTop5ByRoomIdOrderByBeginDateDesc(id).stream()
+	public List<ReservationDto> getLastFive(Integer roomId) {
+		List<ReservationDto> lastFive = reservationRepository.findTop5ByRoomIdOrderByBeginDateDesc(roomId).stream()
 				.map(Reservation::toDto).collect(Collectors.toList());
 		return lastFive;
+	}
+	
+	public void saveReservation(Reservation reservation) {
+		reservationRepository.save(reservation);
 	}
 
 }
