@@ -1,11 +1,13 @@
 package com.mps.rooms.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -120,52 +122,36 @@ public class RoomService {
 		return "Success";
 	}
 
-	public String free(Integer roomId, boolean userAction) {
+	public String free(Integer roomId) {
 		Room room = roomRepository.findById(roomId).orElseThrow(() -> {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There's no room with id: " + roomId + "!");
 		});
 
-		if (userAction) {
-			String userEmail = Utils.getUserEmail();
+		String userEmail = Utils.getUserEmail();
 
-			if (room.getStatus().getCode().equals(0)) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-						"The room " + room.getName() + " was already free!");
-			}
-			if (room.getStatus().getCode().equals(1)) {
-				log.warn("Room {} was already in a pending state", roomId);
-				if (!room.getPendingBy().equals(userEmail)) {
-					if (TimeUnit.MINUTES.convert(new Date().getTime() - room.getPendingDate().getTime(),
-							TimeUnit.MILLISECONDS) < 5) {
-						throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-								"The room: " + room.getName() + " is already in a pending status!");
-					}
-				}
-				room.setPendingBy(null);
-				room.setPendingDate(null);
-			} else if (room.getStatus().getCode().equals(2)) {
-				Reservation currentReservation = reservationService.getCurrentReservationEntity(roomId);
-				if (currentReservation != null && !userEmail.equals(currentReservation.getEmail())) {
+		if (room.getStatus().getCode().equals(0)) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"The room " + room.getName() + " was already free!");
+		}
+		if (room.getStatus().getCode().equals(1)) {
+			log.warn("Room {} was already in a pending state", roomId);
+			if (!room.getPendingBy().equals(userEmail)) {
+				if (room.getPendingDate() != null && TimeUnit.MINUTES
+						.convert(new Date().getTime() - room.getPendingDate().getTime(), TimeUnit.MILLISECONDS) < 5) {
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-							"Room " + room.getName() + " is occupied by someone else!");
-				} else if (currentReservation != null) {
-					currentReservation.setActualEndDate(new Date());
-					reservationService.saveReservation(currentReservation);
+							"The room: " + room.getName() + " is already in a pending status!");
 				}
 			}
-		} else {
-			if (room.getStatus().getCode().equals(1)) {
-				if (TimeUnit.MINUTES.convert(new Date().getTime() - room.getPendingDate().getTime(),
-						TimeUnit.MILLISECONDS) < 5) {
-					return "";
-				}
-				room.setPendingBy(null);
-				room.setPendingDate(null);
-			} else if (room.getStatus().getCode().equals(2)) {
-				Reservation currentReservation = reservationService.getCurrentReservationEntity(roomId);
-				if (currentReservation != null && new Date().before(currentReservation.getActualEndDate())) {
-					return "";
-				}
+			room.setPendingBy(null);
+			room.setPendingDate(null);
+		} else if (room.getStatus().getCode().equals(2)) {
+			Reservation currentReservation = reservationService.getCurrentReservationEntity(roomId);
+			if (currentReservation != null && !userEmail.equals(currentReservation.getEmail())) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+						"Room " + room.getName() + " is occupied by someone else!");
+			} else if (currentReservation != null) {
+				currentReservation.setActualEndDate(new Date());
+				reservationService.saveReservation(currentReservation);
 			}
 		}
 
@@ -178,5 +164,45 @@ public class RoomService {
 		roomRepository.save(room);
 
 		return "Success";
+	}
+
+	@Scheduled(cron = "0 * * * * *")
+	private void scheduledCheck() {
+		log.info("Checking if any room can be set on free");
+		List<Status> statusesToCheck = new ArrayList<Status>();
+
+		Status pending = new Status();
+		pending.setCode(1);
+
+		Status complete = new Status();
+		complete.setCode(2);
+
+		statusesToCheck.add(pending);
+		statusesToCheck.add(complete);
+
+		List<Room> roomsToCheck = roomRepository.findByStatusIn(statusesToCheck);
+		for (Room room : roomsToCheck) {
+			if (room.getStatus().getCode().equals(1)) {
+				if (room.getPendingDate() != null && TimeUnit.MINUTES
+						.convert(new Date().getTime() - room.getPendingDate().getTime(), TimeUnit.MILLISECONDS) < 5) {
+					continue;
+				}
+				room.setPendingBy(null);
+				room.setPendingDate(null);
+			} else if (room.getStatus().getCode().equals(2)) {
+				Reservation currentReservation = reservationService.getCurrentReservationEntity(room.getId());
+				if (currentReservation != null && new Date().before(currentReservation.getActualEndDate())) {
+					continue;
+				}
+			}
+
+			List<String> followers = followService.getFollows(room.getId());
+			// TODO: Send email to followers
+
+			Status free = new Status();
+			free.setCode(0);
+			room.setStatus(free);
+			roomRepository.save(room);
+		}
 	}
 }

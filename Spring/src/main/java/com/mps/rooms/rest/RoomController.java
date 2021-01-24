@@ -103,6 +103,6 @@ public class RoomController {
 		log.info("User {} sent call to free room with id {}.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
-		return ResponseEntity.ok(roomService.free(roomId, true));
+		return ResponseEntity.ok(roomService.free(roomId));
 	}
 }
