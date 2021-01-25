@@ -20,7 +20,7 @@ Prezentare proiect (insert pp aici)
 ## Organizarea task-urilor:
 * [Diagrama Gantt](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
 * [Meeting Minutes](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
-* utilizare [Microsoft Teams](https://www.microsoft.com/ro-ro/microsoft-teams/group-chat-software) & [Discord](https://discord.com/)
+* [Microsoft Teams](https://www.microsoft.com/ro-ro/microsoft-teams/group-chat-software) & [Discord](https://discord.com/)
 
 ## Echipă:
 * [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu) - *341C5*
@@ -29,6 +29,6 @@ Prezentare proiect (insert pp aici)
 * [Bianca-Alexandra Iosub](https://github.com/biancaiosub13) - *342C5*
 
 ## Roluri în cadrul proiectului:
-* *Project manager + Technical Writer* - Bianca
-* *Dezvoltatori* - Andreea + Marius
-* *Tester* - Vladimir
+* **Project manager + Technical Writer** - Bianca
+* **Dezvoltatori** - Andreea + Marius
+* **Tester** - Vladimir
