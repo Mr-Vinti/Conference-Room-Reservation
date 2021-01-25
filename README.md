@@ -8,28 +8,27 @@ Prezentare proiect (insert pp aici)
 Întreaga cerință a proiectului o găsiți la [această adresa](https://ocw.cs.pub.ro/courses/mps/proiect/proiect-2) .
 
 ## Compoziție + Tehnologii:
-* *Angular + Adobe XD* - pentru crearea interfeței proiectului
-* *Sql server* - pentru baza de date: sistem de stări
-* *Azure Active Directory* (AAD) - Autentificare + Autorizare
+* [Angular](https://angular.io/) + [Adobe XD](https://www.adobe.com/ro/products/xd.html) - pentru crearea interfeței proiectului
+* [Sql server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) - pentru baza de date: sistem de stări
+* [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) - Autentificare + Autorizare
+* [HTML](https://www.w3schools.com/html/) & [SCSS](Syntactically Awesome Style Sheets)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Java](https://www.java.com/en/)
+* [Spring](https://spring.io/tools)
+* [Github](https://github.com/)
 
 ## Organizarea task-urilor:
 * [Diagrama Gantt] (https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
 * [Meeting Minutes] (https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
-* utilizare Microsoft Teams
+* utilizare [Microsoft Teams](https://www.microsoft.com/ro-ro/microsoft-teams/group-chat-software) & [Discord](https://discord.com/)
 
 ## Echipă:
-* Vladimir-Georgian Mocanu-Prejma - *341C5*
-* Marius-Mihai Vintilă - *341C5*
-* Mihaela-Andreea Stan - *343 C2*
-* Bianca-Alexandra Iosub - *342C5*
+* [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu) - *341C5*
+* [Marius-Mihai Vintilă](https://github.com/Mr-Vinti) - *341C5*
+* [Mihaela-Andreea Stan](https://github.com/stanandreea09) - *343 C2*
+* [Bianca-Alexandra Iosub](https://github.com/biancaiosub13) - *342C5*
 
 ## Roluri în cadrul proiectului:
 * *Project manager + Technical Writer* - Bianca
 * *Dezvoltatori* - Andreea + Marius
 * *Tester* - Vladimir
-
-## Referințe:
-* https://nodejs.org/en/
-* https://www.oracle.com/ro/java/technologies/javase-jdk11-downloads.html
-* https://spring.io/tools
-* https://projectlombok.org/download
