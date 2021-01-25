@@ -1,11 +1,17 @@
-# MPS - Rezervare Sală Companie
+# MPS - Rezervare Săli Corporații
 
 Prezentare proiect (insert pp aici)
 
-## Scopul proiectului
-În ultima perioadă tot mai multe corporații întâmpina probleme in organizarea ședințelor sau a diferitelor activități, acest lucru se datorează lipsei unei platforme dedicate planificării sălilor dintr-o companie. Astfel, se dorește implementarea unei platforme pentru planificarea sălilor având ca scop îmbunătățirea performantei(datorita organizării mai bune) și a comunicării în cadrul companiei.
+## Echipă:
+* [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu) - *341C5*
+* [Marius-Mihai Vintilă](https://github.com/Mr-Vinti) - *341C5*
+* [Mihaela-Andreea Stan](https://github.com/stanandreea09) - *343 C2*
+* [Bianca-Alexandra Iosub](https://github.com/biancaiosub13) - *342C5*
 
-Întreaga cerință a proiectului o găsiți la [această adresa](https://ocw.cs.pub.ro/courses/mps/proiect/proiect-2) .
+## Scopul proiectului
+  În ultima perioadă tot mai multe corporații întâmpina probleme in organizarea ședințelor sau a diferitelor activități, acest lucru se datorează lipsei unei platforme dedicate planificării sălilor dintr-o companie. Astfel, se dorește implementarea unei platforme pentru planificarea sălilor având ca scop îmbunătățirea performantei(datorita organizării mai bune) și a comunicării în cadrul companiei.
+
+  Întreaga cerință a proiectului o găsiți la [această adresa](https://ocw.cs.pub.ro/courses/mps/proiect/proiect-2) .
 
 ## Compoziție + Tehnologii:
 * [Angular](https://angular.io/) + [Adobe XD](https://www.adobe.com/ro/products/xd.html) - pentru crearea interfeței proiectului
@@ -21,12 +27,6 @@ Prezentare proiect (insert pp aici)
 * [Diagrama Gantt](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
 * [Meeting Minutes](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
 * [Microsoft Teams](https://www.microsoft.com/ro-ro/microsoft-teams/group-chat-software) & [Discord](https://discord.com/)
-
-## Echipă:
-* [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu) - *341C5*
-* [Marius-Mihai Vintilă](https://github.com/Mr-Vinti) - *341C5*
-* [Mihaela-Andreea Stan](https://github.com/stanandreea09) - *343 C2*
-* [Bianca-Alexandra Iosub](https://github.com/biancaiosub13) - *342C5*
 
 ## Roluri în cadrul proiectului:
 * **Project manager + Technical Writer** - Bianca
