@@ -9,9 +9,10 @@ Prezentare proiect (insert pp aici)
 
 ## Compoziție + Tehnologii:
 * [Angular](https://angular.io/) + [Adobe XD](https://www.adobe.com/ro/products/xd.html) - pentru crearea interfeței proiectului
-* [Sql server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) - pentru baza de date: sistem de stări
+* [Sql server](https://azure.microsoft.com/en-us/services/virtual-machines/sql-server) - pentru baza de date: sistem de stări
 * [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) - Autentificare + Autorizare
-* [HTML](https://www.w3schools.com/html/) & [SCSS](Syntactically Awesome Style Sheets)
+* [HTML](https://www.w3schools.com/html/)
+* [SCSS](Syntactically Awesome Style Sheets)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Java](https://www.java.com/en/)
 * [Spring](https://spring.io/tools)
