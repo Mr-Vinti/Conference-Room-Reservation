@@ -3,7 +3,9 @@
 Prezentare proiect (insert pp aici)
 
 ## Scopul proiectului
-Realizarea unei platforme web de rezervare a sălilor dintr-o companie.
+În ultima perioadă tot mai multe corporații întâmpina probleme in organizarea ședințelor sau a diferitelor activități, acest lucru se datorează lipsei unei platforme dedicate planificării sălilor dintr-o companie. Astfel, se dorește implementarea unei platforme pentru planificarea sălilor având ca scop îmbunătățirea performantei(datorita organizării mai bune) și a comunicării în cadrul companiei.
+
+Întreaga cerință a proiectului o găsiți la [această adresa](https://ocw.cs.pub.ro/courses/mps/proiect/proiect-2) .
 
 ## Compoziție + Tehnologii:
 * *Angular + Adobe XD* - pentru crearea interfeței proiectului
