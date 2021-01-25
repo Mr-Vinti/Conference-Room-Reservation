@@ -11,16 +11,15 @@ Prezentare proiect (insert pp aici)
 * [Angular](https://angular.io/) + [Adobe XD](https://www.adobe.com/ro/products/xd.html) - pentru crearea interfeței proiectului
 * [Sql server](https://azure.microsoft.com/en-us/services/virtual-machines/sql-server) - pentru baza de date: sistem de stări
 * [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) - Autentificare + Autorizare
-* [HTML](https://www.w3schools.com/html/)
-* [SCSS](Syntactically Awesome Style Sheets)
+* [HTML](https://www.w3schools.com/html/) & [SCSS](https://sass-lang.com/documentation/syntax)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Java](https://www.java.com/en/)
 * [Spring](https://spring.io/tools)
 * [Github](https://github.com/)
 
 ## Organizarea task-urilor:
-* [Diagrama Gantt] (https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
-* [Meeting Minutes] (https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
+* [Diagrama Gantt](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
+* [Meeting Minutes](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
 * utilizare [Microsoft Teams](https://www.microsoft.com/ro-ro/microsoft-teams/group-chat-software) & [Discord](https://discord.com/)
 
 ## Echipă:
