@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mps.rooms.beans.StringResponse;
 import com.mps.rooms.dto.ReservationDto;
 import com.mps.rooms.dto.RoomDto;
 import com.mps.rooms.service.FollowService;
@@ -46,16 +47,28 @@ public class RoomController {
 		return ResponseEntity.ok(roomService.getRooms());
 	}
 	
+	@ApiOperation("Get Room For User Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@GetMapping("/{room-id}")
+	public ResponseEntity<RoomDto> getRoom(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+		log.info("User {} retrieved room with id {}.",
+				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+
+		return ResponseEntity.ok(roomService.getRoom(roomId));
+	}
+	
 	@ApiOperation("Register user to follow room Method")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
 			@ApiResponse(code = 400, message = "Malformed request"),
 			@ApiResponse(code = 500, message = "Internal error") })
 	@PostMapping("/{room-id}/follow")
-	public ResponseEntity<String> follow(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+	public ResponseEntity<StringResponse> follow(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
 		log.info("User {} followed room with id {}.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
-		return ResponseEntity.ok(followService.follow(roomId));
+		return ResponseEntity.ok(new StringResponse(followService.follow(roomId)));
 	}
 	
 	@ApiOperation("User unfollows room Method")
@@ -63,11 +76,11 @@ public class RoomController {
 			@ApiResponse(code = 400, message = "Malformed request"),
 			@ApiResponse(code = 500, message = "Internal error") })
 	@PostMapping("/{room-id}/unfollow")
-	public ResponseEntity<String> unfollow(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+	public ResponseEntity<StringResponse> unfollow(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
 		log.info("User {} followed room with id {}.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
-		return ResponseEntity.ok(followService.unfollow(roomId));
+		return ResponseEntity.ok(new StringResponse(followService.unfollow(roomId)));
 	}
 	
 	@ApiOperation("Set room on pending when user starts reservation Method")
@@ -75,7 +88,7 @@ public class RoomController {
 			@ApiResponse(code = 400, message = "Malformed request"),
 			@ApiResponse(code = 500, message = "Internal error") })
 	@PostMapping("/{room-id}/pending")
-	public ResponseEntity<String> pending(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+	public ResponseEntity<RoomDto> pending(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
 		log.info("User {} opened reservation dialog for room with id {}.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
@@ -87,7 +100,7 @@ public class RoomController {
 			@ApiResponse(code = 400, message = "Malformed request"),
 			@ApiResponse(code = 500, message = "Internal error") })
 	@PostMapping("/{room-id}/occupy")
-	public ResponseEntity<String> occupy(@PathVariable(name = "room-id") Integer roomId, @RequestBody ReservationDto reservation, Principal principal) {
+	public ResponseEntity<RoomDto> occupy(@PathVariable(name = "room-id") Integer roomId, @RequestBody ReservationDto reservation, Principal principal) {
 		log.info("User {} sent call to occupy room with id {}.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
@@ -99,7 +112,7 @@ public class RoomController {
 			@ApiResponse(code = 400, message = "Malformed request"),
 			@ApiResponse(code = 500, message = "Internal error") })
 	@PostMapping("/{room-id}/free")
-	public ResponseEntity<String> free(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
+	public ResponseEntity<RoomDto> free(@PathVariable(name = "room-id") Integer roomId, Principal principal) {
 		log.info("User {} sent call to free room with id {}.",
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 

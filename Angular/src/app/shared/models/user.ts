@@ -1,4 +1,5 @@
 export interface User {
-    displayName: string,
-    groupIDs: string[],
-  }
+  displayName: string;
+  groupIDs: string[];
+  name: string;
+}

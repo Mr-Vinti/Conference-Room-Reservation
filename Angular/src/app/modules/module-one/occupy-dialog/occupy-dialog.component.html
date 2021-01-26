@@ -1,0 +1,116 @@
+<h1 mat-dialog-title>{{ data?.title }}</h1>
+
+<div mat-dialog-content>
+  <p>{{ data?.message }}</p>
+
+  <form [formGroup]="reservationForm" fxLayout.lt-md="column">
+    <div
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutGap="10%"
+      fxLayoutGap.lt-md="1%"
+    >
+      <mat-form-field fxFlex="45%" fxFlex.lt-md="100%">
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="date"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="reservationForm.controls.date.errors?.required"
+          >Date is required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field fxFlex="45%" fxFlex.lt-md="100%">
+        <mat-label>End Time</mat-label>
+        <input matInput [ngxTimepicker]="picker2" formControlName="endTime" />
+        <ngx-material-timepicker #picker2></ngx-material-timepicker>
+        <mat-error *ngIf="reservationForm.controls.date.errors?.required"
+          >Date is required</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutGap="10%"
+      fxLayoutGap.lt-md="1%"
+    >
+      <mat-form-field fxFlex="45%" fxFlex.lt-md="100%">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="reservationForm.controls.name.errors?.required"
+          >Name is required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field fxFlex="45%" fxFlex.lt-md="100%">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="reservationForm.controls.email.errors?.required"
+          >Email is required</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <mat-form-field fxFlex="100%">
+        <mat-label>Reason</mat-label>
+        <textarea matInput formControlName="reason"></textarea>
+        <mat-error *ngIf="reservationForm.controls.reason.errors?.required"
+          >Reason is required</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <div
+    *ngIf="data?.confirmationRequired"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="space-between center"
+    fxLayoutAlign.lt-md="center stretch"
+    fxLayoutGap.lt-md="1%"
+    class="w-100"
+  >
+    <button
+      fxFlex="40%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="warn"
+      (click)="onDismiss()"
+    >
+      Cancel
+    </button>
+    <button
+      fxFlex="40%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      Occupy
+    </button>
+  </div>
+  <div
+    *ngIf="!data?.confirmationRequired"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="center stretch"
+    class="w-100"
+  >
+    <button
+      fxFlex="50%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      Ok
+    </button>
+  </div>
+</div>

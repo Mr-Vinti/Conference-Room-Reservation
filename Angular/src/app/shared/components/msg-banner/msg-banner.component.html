@@ -1,0 +1,49 @@
+<div class="messageContainer">
+    <ul class="message-item" *ngFor="let msg of msgList">
+        <mat-card *ngIf="msg.type == 'W'" class="messageBox">
+            <button mat-raised-button type="button" class="badge badge-warning">
+                WARNING
+            </button>
+            <mat-card-content class="message-text message-warning">
+                <span>{{msg.content}}</span>
+            </mat-card-content>
+            <button mat-raised-button type="button" class="btn-close" (click)="removeMsg(msg)">
+                <i *ngIf="!msg.disabled" class="material-icons">close</i>
+            </button>
+        </mat-card>
+
+        <mat-card *ngIf="msg.type == 'E'" class="messageBox">
+            <button mat-raised-button type="button" class="badge badge-danger">
+                ERROR
+            </button>
+            <mat-card-content class="message-text message-danger ">
+                <span>{{msg.content}}</span>
+            </mat-card-content>
+            <button mat-raised-button type="button" class="btn-close" (click)="removeMsg(msg)">
+                <i *ngIf="!msg.disabled" class="material-icons">close</i>
+            </button>
+        </mat-card>
+
+        <mat-card *ngIf="msg.type == 'S'" class="messageBox">
+            <button mat-raised-button type="button" class="badge badge-success">
+                SUCCESS
+            </button>
+            <mat-card-content class="message-text message-success">
+                <span>{{msg.content}}</span>
+            </mat-card-content>
+            <button mat-raised-button type="button" class="btn-close" (click)="removeMsg(msg)">
+                <i *ngIf="!msg.disabled" class="material-icons">close</i>
+            </button>
+        </mat-card>
+
+        <mat-card *ngIf="msg.type == 'I'" class="messageBox">
+            <button mat-raised-button type="button" class="badge badge-info">
+                INFO
+            </button>
+            <mat-card-content class="message-text message-info">
+                <span>{{msg.content}}</span>
+            </mat-card-content>
+            <span></span>
+        </mat-card>
+    </ul>
+</div>

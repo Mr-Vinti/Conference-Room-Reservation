@@ -29,25 +29,42 @@ public class RoomService {
 	private RoomRepository roomRepository;
 	private ReservationService reservationService;
 	private FollowService followService;
+	private StatusService statusService;
 
 	private RoomDto convertToDto(Room room) {
-		ReservationDto currentReservation = reservationService.getCurrentReservation(room.getId());
+		ReservationDto currentReservation = null;
+		String pendingBy = null;
+		Date pendingDate = null;
+		if (room.getStatus().getCode() == 2) {
+			currentReservation = reservationService.getCurrentReservation(room.getId());
+		} else if (room.getStatus().getCode() == 1) {
+			pendingBy = room.getPendingBy();
+			pendingDate = room.getPendingDate();
+		}
 		List<ReservationDto> lastFiveReservations = reservationService.getLastFive(room.getId());
 
 		String userEmail = Utils.getUserEmail();
 
 		boolean userFollowsRoom = followService.getFollow(room.getId(), userEmail);
 
-		return RoomDto.builder().name(room.getName()).status(Status.toDto(room.getStatus()))
+		return RoomDto.builder().id(room.getId()).name(room.getName()).status(Status.toDto(room.getStatus()))
 				.description(room.getDescription()).currentReservation(currentReservation)
-				.pastFiveReservations(lastFiveReservations).following(userFollowsRoom).build();
+				.pastFiveReservations(lastFiveReservations).pendingBy(pendingBy).pendingDate(pendingDate)
+				.following(userFollowsRoom).build();
+	}
+	
+
+	public RoomDto getRoom(Integer roomId) {
+		return convertToDto(roomRepository.findById(roomId).orElseThrow(() -> {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There's no room with id: " + roomId + "!");
+		}));
 	}
 
 	public List<RoomDto> getRooms() {
 		return roomRepository.findAll().stream().map(this::convertToDto).collect(Collectors.toList());
 	}
 
-	public String pending(Integer roomId) {
+	public RoomDto pending(Integer roomId) {
 		Room room = roomRepository.findById(roomId).orElseThrow(() -> {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There's no room with id: " + roomId + "!");
 		});
@@ -67,17 +84,16 @@ public class RoomService {
 			}
 		}
 
-		Status pending = new Status();
-		pending.setCode(1);
+		Status pending = statusService.getStatusById(1);
 		room.setPendingDate(new Date());
 		room.setPendingBy(Utils.getUserEmail());
 		room.setStatus(pending);
 		roomRepository.save(room);
 
-		return "Success";
+		return convertToDto(room);
 	}
 
-	public String occupy(Integer roomId, ReservationDto reservationDto) {
+	public RoomDto occupy(Integer roomId, ReservationDto reservationDto) {
 		Room room = roomRepository.findById(roomId).orElseThrow(() -> {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There's no room with id: " + roomId + "!");
 		});
@@ -102,8 +118,11 @@ public class RoomService {
 			}
 		}
 
-		Status occupied = new Status();
-		occupied.setCode(2);
+		if (reservationDto.getStartTime().after(reservationDto.getEndTime())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The end time can't be before the start time!");
+		}
+
+		Status occupied = statusService.getStatusById(2);
 		room.setPendingDate(null);
 		room.setPendingBy(null);
 		room.setStatus(occupied);
@@ -119,10 +138,10 @@ public class RoomService {
 		reservation.setActualEndDate(reservationDto.getEndTime());
 		reservationService.saveReservation(reservation);
 
-		return "Success";
+		return convertToDto(room);
 	}
 
-	public String free(Integer roomId) {
+	public RoomDto free(Integer roomId) {
 		Room room = roomRepository.findById(roomId).orElseThrow(() -> {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There's no room with id: " + roomId + "!");
 		});
@@ -158,12 +177,11 @@ public class RoomService {
 		List<String> followers = followService.getFollows(roomId);
 		// TODO: Send email to followers
 
-		Status free = new Status();
-		free.setCode(0);
+		Status free = statusService.getStatusById(0);
 		room.setStatus(free);
 		roomRepository.save(room);
 
-		return "Success";
+		return convertToDto(room);
 	}
 
 	@Scheduled(cron = "0 * * * * *")
@@ -205,4 +223,5 @@ public class RoomService {
 			roomRepository.save(room);
 		}
 	}
+
 }

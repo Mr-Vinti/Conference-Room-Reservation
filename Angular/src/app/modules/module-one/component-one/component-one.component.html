@@ -1,12 +1,106 @@
-<p>component-one works!</p>
-<button type="button" class="btn btn-primary" (click)="testJavaApi()">
-    Test Java Api
-</button>
-<div>
-    <p>Java Api Response: {{message}}</p>
-    <p>User Name: {{user.displayName}}</p>
-    <p>User Group Ids from token:</p>
-    <li *ngFor="let group of user.groupIDs">
-        <span class = "badge">{{group}}</span>
-    </li>
-</div>
+<app-msg-banner
+  [msgList]="messageList"
+  (msgListChange)="messageList = $event"
+></app-msg-banner>
+
+<mat-table
+  *ngIf="roomsLoaded"
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Room </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Room">
+      {{ row.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Status
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Status">
+      {{ row.status.description }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="reservedBy">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Reserved By
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Reserved By">
+      {{ row.currentReservation?.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="timeUntilFree">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Time until free
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Time until free">
+      {{ row.timeUntilFree | date: "HH:mm:ss" }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Action
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Action">
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="
+          (row.status.code === 2 &&
+            user.displayName === row.currentReservation.email) ||
+          (row.status.code === 1 && user.displayName === row.pendingBy)
+        "
+        (click)="free(row)"
+      >
+        Free
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="row.status.code === 0"
+        (click)="pending(row)"
+      >
+        Occupy
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="follow">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Follow
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Follow">
+      <div *ngIf="row.status.code === 1 || row.status.code === 2">
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="row.following"
+          (click)="unfollow(row)"
+        >
+          Unfollow
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="
+            !row.following &&
+            ((row.status.code === 2 &&
+              user.displayName !== row.currentReservation.email) ||
+              (row.status.code === 1 && user.displayName !== row.pendingBy))
+          "
+          (click)="follow(row)"
+        >
+          Follow
+        </button>
+      </div>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

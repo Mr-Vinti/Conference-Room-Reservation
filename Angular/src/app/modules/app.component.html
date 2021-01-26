@@ -6,9 +6,6 @@
   <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button>
   <button mat-raised-button *ngIf="loggedIn" color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
-<br />
-<a routerLink="module-one">View Module One</a>
-<br/>
 <main>
   <div *ngIf="(isLoading | async)" class="loading-indicator">
       <mat-spinner class="pos-center"></mat-spinner>

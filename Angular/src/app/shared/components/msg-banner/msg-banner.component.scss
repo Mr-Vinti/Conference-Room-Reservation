@@ -1,0 +1,79 @@
+.mat-card {
+    padding: 10px;
+    box-shadow: 0px 3px 1px -1px rgba(0, 0, 0, 0.2),
+      1px 1px 5px 3px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 900px) {
+    .mat-card {
+      padding: 10px;
+      box-shadow: 0px 3px 1px -1px rgba(0, 0, 0, 0.2),
+        1px 1px 5px 3px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .message-text {
+      margin-right: 10px;
+      vertical-align: middle;
+      display: inline-block;
+      word-break: break-word;
+      white-space: pre-line;
+      padding-left: 20px;
+      font-weight: 600;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+  
+  
+  .btn-close {
+    max-width: 1%;
+  }
+  .badge {
+    display: inline-block;
+    color: white;
+    width: 100px;
+  }
+  .badge:hover {
+    cursor: default;
+  }
+  .badge-success {
+    background-color: #33b553;
+  }
+  .badge-warning {
+    background-color: #f47c3c;
+  }
+  .badge-danger {
+    background-color: red;
+  }
+  .message-danger {
+    color: #d9534f;
+  }
+  .message-warning {
+    color: #f47c3c;
+  }
+  .message-success {
+    color: #5b635d;
+  }
+  .message-item {
+    padding-inline-start: 0px;
+  }
+  .message-text {
+    margin-right: 10px;
+    vertical-align: middle;
+    display: inline-block;
+    word-break: break-word;
+    white-space: pre-line;
+    padding-left: 20px;
+    font-weight: 600;
+  }
+  
+  ::ng-deep .messageContainer .message-item .mat-card .mat-card-content {
+    margin-bottom: 0px !important;
+  }

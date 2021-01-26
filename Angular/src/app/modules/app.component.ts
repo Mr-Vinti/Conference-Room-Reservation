@@ -42,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
   user: User = {
     displayName: '',
     groupIDs: [],
+    name: ''
   };
   isLoading: Subject<boolean> = this.loadingService.isLoading;
 

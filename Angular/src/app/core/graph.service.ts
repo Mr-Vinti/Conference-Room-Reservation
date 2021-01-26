@@ -4,18 +4,18 @@ import { User } from '../shared/models/user';
 import * as config from '../modules/app-config.json';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GraphService {
-
   user: User = {
-    displayName: "",
+    displayName: '',
     groupIDs: [],
+    name: '',
   };
 
   graphUri = config.resources.graphApi.resourceUri;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getGroups() {
     return this.http.get(this.graphUri);

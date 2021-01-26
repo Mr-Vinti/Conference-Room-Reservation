@@ -1,5 +1,6 @@
 package com.mps.rooms.dto;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -14,10 +15,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class RoomDto {
+	private Integer id;
 	private String name;
 	private StatusDto status;
 	private String description;
 	private ReservationDto currentReservation;
 	private List<ReservationDto> pastFiveReservations;
+	private String pendingBy;
+	private Date pendingDate;
 	private Boolean following;
 }
