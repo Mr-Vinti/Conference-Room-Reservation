@@ -107,8 +107,8 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
                 );
                 this.dataSource.data = this.dataSource.data;
               },
-              (err) => {
-                this.addBannerMsg(err.error.message, MsgType.ERROR);
+              (errr) => {
+                this.addBannerMsg(errr.error.message, MsgType.ERROR);
               }
             );
           }
@@ -148,8 +148,8 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
           if (dialogResult) {
             const reservation: Reservation = dialogResult;
             this.service.setRoomAsOccupied(updatedRoom, reservation).subscribe(
-              (ocuupiedResponse) => {
-                const updatedOccupiedRoom: Room = ocuupiedResponse;
+              (ocupiedResponse) => {
+                const updatedOccupiedRoom: Room = ocupiedResponse;
                 this.dataSource.data.splice(
                   this.dataSource.data.indexOf(updatedRoom),
                   1,
@@ -170,7 +170,7 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
               }
             );
           } else {
-            this.free(updatedRoom);
+            this.free(updatedRoom, true);
           }
         });
       },
