@@ -3,12 +3,33 @@
   (msgListChange)="messageList = $event"
 ></app-msg-banner>
 
+<div *ngIf="roomsLoaded" fxLayout="row" fxLayoutAlign="end" class="add">
+  <button
+    fxFlex="20%"
+    fxFlex.lt-md="100%"
+    mat-raised-button
+    color="primary"
+    (click)="add()"
+  >
+    <mat-icon>add</mat-icon> Add Room
+  </button>
+</div>
+
 <mat-table
   *ngIf="roomsLoaded"
   [dataSource]="dataSource"
   matSort
-  class="mat-elevation-z8"
+  class="mat-elevation-z8 table-responsive"
 >
+  <ng-container matColumnDef="info">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Info </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Info">
+      <button mat-raised-button color="primary" (click)="showInfo(row)">
+        <mat-icon>info</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Room </mat-header-cell>
     <mat-cell *matCellDef="let row" data-label="Room">
@@ -99,6 +120,15 @@
           Follow
         </button>
       </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+    <mat-cell *matCellDef="let row" data-label="Edit">
+      <button mat-raised-button color="primary" (click)="edit(row)">
+        <mat-icon>edit</mat-icon>
+      </button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

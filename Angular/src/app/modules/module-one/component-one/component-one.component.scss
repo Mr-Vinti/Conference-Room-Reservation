@@ -1,9 +1,14 @@
 .mat-header-cell {
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .mat-cell {
-    text-align: center;
-    justify-content:center;
-  }
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: center;
+}
+
+.add {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

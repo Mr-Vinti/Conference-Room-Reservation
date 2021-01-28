@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>{{ data?.title }}</h1>
+
+<div mat-dialog-content>
+  <p>{{ data?.message }}</p>
+
+  <span>Room description: {{room.description}} <br></span>
+  <span *ngIf="room.currentReservation">Reason: {{room.currentReservation.reason}} <br></span>
+  <span *ngIf="room.currentReservation">Contact: {{room.currentReservation.email}} <br></span>
+  <span *ngIf="!room.currentReservation && room.pendingBy">Contact: {{room.pendingBy}} <br></span>
+  <span>Last 5 reservations: <br></span>
+  <span *ngFor="let reservation of room.pastFiveReservations">
+    {{reservation.name}} - {{reservation.email}} - {{reservation.startTime | date: "dd/MM/yy hh:mm:ss"}} - {{reservation.endTime | date: "dd/MM/yy hh:mm:ss"}} <br>
+  </span>
+</div>
+
+<div mat-dialog-actions>
+  <div
+    *ngIf="data?.confirmationRequired"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="space-between center"
+    fxLayoutAlign.lt-md="center stretch"
+    fxLayoutGap.lt-md="1%"
+    class="w-100"
+  >
+    <button
+      fxFlex="40%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="warn"
+      (click)="onDismiss()"
+    >
+      Cancel
+    </button>
+    <button
+      fxFlex="40%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      Occupy
+    </button>
+  </div>
+  <div
+    *ngIf="!data?.confirmationRequired"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="center stretch"
+    class="w-100"
+  >
+    <button
+      fxFlex="50%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      Ok
+    </button>
+  </div>
+</div>

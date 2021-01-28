@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   baseHref: '/reservation/',
-  apiResourceUri: 'http://localhost:8080/reservation/api'
+  apiResourceUri: 'http://localhost:8080/reservation/api',
+  adminGroup: '632eab28-21e4-4af9-ad45-5f96bdd31c32'
 };

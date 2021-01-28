@@ -9,11 +9,13 @@ import { Message } from '../../../shared/models/message.model';
 import { MatDialog } from '@angular/material/dialog';
 import { OccupyDialogComponent } from '../occupy-dialog/occupy-dialog.component';
 import { Reservation } from '../../../shared/models/reservation.model';
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-component-one',
   templateUrl: './component-one.component.html',
-  styleUrls: ['./component-one.component.scss'],
+  styleUrls: ['./component-one.component.scss', '../../../shared/style/responsive-table.component.scss'],
 })
 export class ComponentOneComponent implements OnInit, OnDestroy {
   messageList = [];
@@ -22,6 +24,7 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
   user: User;
   dataSource: MatTableDataSource<Room>;
   displayedColumns: String[] = [
+    'info',
     'name',
     'status',
     'reservedBy',
@@ -65,6 +68,9 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.graphService.user;
+    if (this.user.groupIDs.includes(environment.adminGroup)) {
+      this.displayedColumns.push('edit');
+    }
     this.service.getRooms().subscribe(
       (response) => {
         this.rooms = response;
@@ -180,7 +186,23 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
     );
   }
 
-  occupy(row: Room) {}
+  showInfo(row: Room) {
+    this.dialog.open(InfoDialogComponent, {
+      data: {
+        title: 'Details on room ' + row.name,
+        room: row,
+        confirmationRequired: false,
+      },
+    });
+  }
+
+  add() {
+
+  }
+
+  edit(row: Room) {
+
+  }
 
   follow(row: Room) {
     this.service.followRoom(row).subscribe(

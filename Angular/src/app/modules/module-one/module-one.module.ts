@@ -9,10 +9,11 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MsgBannerComponent } from '../../shared/components/msg-banner/msg-banner.component';
 import { SharedModule } from '../../shared/shared.module';
 import { OccupyDialogComponent } from './occupy-dialog/occupy-dialog.component';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 
 
 @NgModule({
-  declarations: [ModuleOneComponent, ComponentOneComponent, OccupyDialogComponent],
+  declarations: [ModuleOneComponent, ComponentOneComponent, OccupyDialogComponent, InfoDialogComponent],
   imports: [
     CommonModule,
     MaterialModule,
