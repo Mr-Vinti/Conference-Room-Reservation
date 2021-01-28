@@ -1,0 +1,76 @@
+<h1 mat-dialog-title>{{ data?.title }}</h1>
+
+<div mat-dialog-content>
+  <p>{{ data?.message }}</p>
+
+  <form
+    [formGroup]="roomForm"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutGap="10%"
+    fxLayoutGap.lt-md="1%"
+  >
+    <mat-form-field fxFlex="45%" fxFlex.lt-md="100%">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="roomForm.controls.name.errors?.required"
+        >Name is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field fxFlex="45%" fxFlex.lt-md="100%">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" />
+      <mat-error *ngIf="roomForm.controls.description.errors?.required"
+        >Description is required</mat-error
+      >
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <div
+    *ngIf="data?.confirmationRequired"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="space-between center"
+    fxLayoutAlign.lt-md="center stretch"
+    fxLayoutGap.lt-md="1%"
+    class="w-100"
+  >
+    <button
+      fxFlex="40%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="warn"
+      (click)="onDismiss()"
+    >
+      Cancel
+    </button>
+    <button
+      fxFlex="40%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      Save
+    </button>
+  </div>
+  <div
+    *ngIf="!data?.confirmationRequired"
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="center stretch"
+    class="w-100"
+  >
+    <button
+      fxFlex="50%"
+      fxFlex.lt-md="100%"
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      Ok
+    </button>
+  </div>
+</div>

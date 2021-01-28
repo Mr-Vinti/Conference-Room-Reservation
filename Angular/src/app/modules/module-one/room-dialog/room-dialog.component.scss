@@ -1,0 +1,50 @@
+.mat-dialog-content {
+  width: 1500px;
+}
+
+.mat-dialog-actions .mat-button-base + .mat-button-base,
+.mat-dialog-actions .mat-mdc-button-base + .mat-mdc-button-base {
+  margin-left: 0px !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .mat-dialog-content {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .mat-dialog-content {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .mat-dialog-content {
+    width: 500px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .mat-dialog-content {
+    width: 700px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .mat-dialog-content {
+    width: 800px;
+  }
+}
+
+@media only screen and (min-width: 1263px) {
+  .mat-dialog-content {
+    width: 1000px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .mat-dialog-content {
+    width: 1500px;
+  }
+}

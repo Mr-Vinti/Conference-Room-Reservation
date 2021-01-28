@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PlatformLocation } from '@angular/common';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { StringResponse } from '../../shared/models/string-response';
 import { Room } from '../../shared/models/room.model';
 import { Reservation } from '../../shared/models/reservation.model';
+import { Params } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -34,6 +35,19 @@ export class CommonService {
         const url = environment.apiResourceUri + '/rooms';
 
         return this.http.get<Room[]>(url);
+    }
+
+    upsertRoom(id: number, name: string, description: string): Observable<Room> {
+        const url = environment.apiResourceUri + '/rooms';
+
+        let params = new HttpParams();
+        if (id !== undefined) {
+            params = params.set('id', id.toString());
+        }
+        params = params.set('name', name);
+        params = params.set('description', description);
+
+        return this.http.put<Room>(url, null, {params});
     }
 
     setRoomAsFree(room: Room): Observable<Room> {

@@ -9,8 +9,10 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mps.rooms.beans.StringResponse;
@@ -57,6 +59,26 @@ public class RoomController {
 				((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
 
 		return ResponseEntity.ok(roomService.getRoom(roomId));
+	}
+	
+	@ApiOperation("Upsert Room Method")
+	@ApiResponses({ @ApiResponse(code = 200, message = "Successful"),
+			@ApiResponse(code = 400, message = "Malformed request"),
+			@ApiResponse(code = 500, message = "Internal error") })
+	@PutMapping
+	public ResponseEntity<RoomDto> upsertRoom(@RequestParam(value = "id", required = false) Integer roomId,
+			@RequestParam(value = "name", required = false) String name, 
+			@RequestParam(value = "description", required = false) String description, 
+			Principal principal) {
+		if (roomId != null) {
+			log.info("User {} updated room with id {}.",
+					((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"), roomId);
+		} else {
+			log.info("User {} created a new room.",
+					((Jwt) ((JwtAuthenticationToken) principal).getPrincipal()).getClaimAsString("name"));
+		}
+
+		return ResponseEntity.ok(roomService.upsert(roomId, name, description));
 	}
 	
 	@ApiOperation("Register user to follow room Method")

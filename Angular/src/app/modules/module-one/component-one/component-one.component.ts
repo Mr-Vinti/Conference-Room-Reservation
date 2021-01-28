@@ -11,6 +11,7 @@ import { OccupyDialogComponent } from '../occupy-dialog/occupy-dialog.component'
 import { Reservation } from '../../../shared/models/reservation.model';
 import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 import { environment } from '../../../../environments/environment';
+import { RoomDialogComponent } from '../room-dialog/room-dialog.component';
 
 @Component({
   selector: 'app-component-one',
@@ -197,11 +198,41 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
   }
 
   add() {
-
+    const dialogRef = this.dialog.open(RoomDialogComponent, {
+      data: {
+        title: 'Add a new room',
+        confirmationRequired: true,
+      },
+    });
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        this.service.upsertRoom(undefined, dialogResult.name, dialogResult.description).subscribe(response => {
+          const newRoom: Room = response;
+          this.dataSource.data.push(newRoom);
+          this.dataSource.data = this.dataSource.data;
+        });
+      }
+    });
   }
 
   edit(row: Room) {
-
+    const dialogRef = this.dialog.open(RoomDialogComponent, {
+      data: {
+        title: 'Edit room',
+        room: row,
+        confirmationRequired: true,
+      },
+    });
+    dialogRef.afterClosed().subscribe((dialogResult) => {
+      if (dialogResult) {
+        this.service.upsertRoom(row.id, dialogResult.name, dialogResult.description).subscribe(response => {
+          const updatedRoom: Room = response;
+          row.name = updatedRoom.name;
+          row.description = updatedRoom.description;
+          this.dataSource.data = this.dataSource.data;
+        });
+      }
+    });
   }
 
   follow(row: Room) {

@@ -34,7 +34,7 @@ import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/conf
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Template app!';
+  title = 'Reserve me!';
   isIframe: boolean;
   private loginSubscription: Subscription;
   private tokenSubscription: Subscription;

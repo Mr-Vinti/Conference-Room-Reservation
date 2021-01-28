@@ -52,7 +52,6 @@ public class RoomService {
 				.pastFiveReservations(lastFiveReservations).pendingBy(pendingBy).pendingDate(pendingDate)
 				.following(userFollowsRoom).build();
 	}
-	
 
 	public RoomDto getRoom(Integer roomId) {
 		return convertToDto(roomRepository.findById(roomId).orElseThrow(() -> {
@@ -222,6 +221,23 @@ public class RoomService {
 			room.setStatus(free);
 			roomRepository.save(room);
 		}
+	}
+
+	public RoomDto upsert(Integer roomId, String name, String description) {
+		Room room;
+		if (roomId != null) {
+			room = this.roomRepository.findById(roomId).orElseThrow(() -> {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There's no room with id: " + roomId + "!");
+			});
+		} else {
+			room = new Room();
+			room.setStatus(statusService.getStatusById(0));
+		}
+
+		room.setName(name);
+		room.setDescription(description);
+		roomRepository.save(room);
+		return convertToDto(roomRepository.save(room));
 	}
 
 }

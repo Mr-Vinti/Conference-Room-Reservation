@@ -19,20 +19,11 @@ import { ModuleOneComponent } from './module-one/module-one.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { AppComponent } from './app.component';
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'module-one',
-    pathMatch: 'full'
-  },
-  {path: 'module-one',
-    component: ModuleOneComponent,
-  }
-];
+const routes: Routes = [{ path: '', component: ModuleOneComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
