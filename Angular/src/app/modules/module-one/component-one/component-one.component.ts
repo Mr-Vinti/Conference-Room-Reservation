@@ -35,6 +35,7 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
   ];
 
   intervalId;
+  isAdmin = false;
 
   constructor(
     private service: CommonService,
@@ -71,6 +72,7 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
     this.user = this.graphService.user;
     if (this.user.groupIDs.includes(environment.adminGroup)) {
       this.displayedColumns.push('edit');
+      this.isAdmin = true;
     }
     this.service.getRooms().subscribe(
       (response) => {

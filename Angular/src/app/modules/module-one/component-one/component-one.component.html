@@ -3,7 +3,7 @@
   (msgListChange)="messageList = $event"
 ></app-msg-banner>
 
-<div *ngIf="roomsLoaded" fxLayout="row" fxLayoutAlign="end" class="add">
+<div *ngIf="roomsLoaded && isAdmin" fxLayout="row" fxLayoutAlign="end" class="add">
   <button
     fxFlex="20%"
     fxFlex.lt-md="100%"
