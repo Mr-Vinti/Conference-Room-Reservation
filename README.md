@@ -1,34 +1,20 @@
-# MPS - Rezervare Săli Corporații
+# MPS - Conference room reservation
 
-Prezentare proiect (insert pp aici)
+## Team:
+* [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu)
+* [Marius-Mihai Vintilă](https://github.com/Mr-Vinti)
+* [Mihaela-Andreea Stan](https://github.com/stanandreea09)
+* [Bianca-Alexandra Iosub](https://github.com/biancaiosub13)
 
-## Echipă:
-* [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu) - *341C5*
-* [Marius-Mihai Vintilă](https://github.com/Mr-Vinti) - *341C5*
-* [Mihaela-Andreea Stan](https://github.com/stanandreea09) - *343 C2*
-* [Bianca-Alexandra Iosub](https://github.com/biancaiosub13) - *342C5*
+## Project Description
+  Lately, corporations encounter problems with scheduling meeting and other activities in their available conference rooms. This thing happens due to the lack of a platform dedicated to the planification of meetings in these rooms. This project comes & helps the employer and employees to schedule a meeting in a room, on the spot, and see which rooms are busy. Also, you can subscribe to follow a room and be notified once the room becomes free.
 
-## Scopul proiectului
-  În ultima perioadă tot mai multe corporații întâmpina probleme in organizarea ședințelor sau a diferitelor activități, acest lucru se datorează lipsei unei platforme dedicate planificării sălilor dintr-o companie. Astfel, se dorește implementarea unei platforme pentru planificarea sălilor având ca scop îmbunătățirea performantei(datorita organizării mai bune) și a comunicării în cadrul companiei.
-
-  Întreaga cerință a proiectului o găsiți la [această adresa](https://ocw.cs.pub.ro/courses/mps/proiect/proiect-2) .
-
-## Compoziție + Tehnologii:
-* [Angular](https://angular.io/) + [Adobe XD](https://www.adobe.com/ro/products/xd.html) - pentru crearea interfeței proiectului
-* [Sql server](https://azure.microsoft.com/en-us/services/virtual-machines/sql-server) - pentru baza de date: sistem de stări
-* [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) - Autentificare + Autorizare
+## Technologies:
+* [Angular](https://angular.io/)
+* [Sql server](https://azure.microsoft.com/en-us/services/virtual-machines/sql-server)
+* [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/)
 * [HTML](https://www.w3schools.com/html/) & [SCSS](https://sass-lang.com/documentation/syntax)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Java](https://www.java.com/en/)
 * [Spring](https://spring.io/tools)
 * [Github](https://github.com/)
-
-## Organizarea task-urilor:
-* [Diagrama Gantt](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=1941194655)
-* [Meeting Minutes](https://docs.google.com/spreadsheets/d/1GoJ3Bjaps0HLJ11guxvXWTWg6xJ2U7DOwIV7gmbPsPU/edit#gid=139849447)
-* [Microsoft Teams](https://www.microsoft.com/ro-ro/microsoft-teams/group-chat-software) & [Discord](https://discord.com/)
-
-## Roluri în cadrul proiectului:
-* **Project manager + Technical Writer** - Bianca
-* **Dezvoltatori** - Andreea + Marius
-* **Tester** - Vladimir
