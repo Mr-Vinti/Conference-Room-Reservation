@@ -1,4 +1,4 @@
-# MPS - Conference room reservation
+# Conference room reservation
 
 ## Team:
 * [Vladimir-Georgian Mocanu-Prejma](https://github.com/vladimirMocanu)
